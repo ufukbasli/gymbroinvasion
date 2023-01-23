@@ -21,33 +21,33 @@ public class PlayerPunch : MonoBehaviour
 
     private void Update()
     {
-        if (currentPunchTimer <= 0f)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                PunchTarget();
+        //if (currentPunchTimer <= 0f)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Mouse0))
+        //    {
+        //        PunchTarget();
 
-                if (punchObject != null)
-                {
-                    var rotation = Quaternion.LookRotation(punchObject.transform.position - transform.position);
-                    rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
-                    transform.rotation = rotation;
-                    //Debug.Log(punchObject);
-                    enemy = punchObject.GetComponent<baseCharacter>();
-                    Debug.Log(enemy);
-                    if (enemy != null)
-                    {
+        //        if (punchObject != null)
+        //        {
+        //            var rotation = Quaternion.LookRotation(punchObject.transform.position - transform.position);
+        //            rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
+        //            transform.rotation = rotation;
+        //            //Debug.Log(punchObject);
+        //            enemy = punchObject.GetComponent<baseCharacter>();
+        //            Debug.Log(enemy);
+        //            if (enemy != null)
+        //            {
                         
                         
-                    }
-                }
+        //            }
+        //        }
 
-            }
-        }
-        else
-        {
-            currentPunchTimer -= Time.deltaTime;
-        }
+        //    }
+        //}
+        //else
+        //{
+        //    currentPunchTimer -= Time.deltaTime;
+        //}
 
         //Debug.DrawRay(transform.position, transform.forward);
         //Debug.DrawRay(transform.position, Quaternion.AngleAxis(punchAngle, Vector3.up) * transform.forward);
@@ -55,11 +55,14 @@ public class PlayerPunch : MonoBehaviour
 
     }
 
-    private void DealDamage()
+    private void OnTriggerEnter(Collider other)
     {
-        enemy.TakeDamage(punchDmg);
-        
-        enemy = null;
+        var enemy = other.GetComponent<baseCharacter>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(punchDmg);
+        }
     }
     private void PunchTarget()
     {

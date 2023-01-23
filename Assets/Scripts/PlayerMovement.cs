@@ -9,23 +9,53 @@ public class PlayerMovement : MonoBehaviour
     private baseCharacter nearestEnemy;
     public LayerMask characterMask;
     public float detectRange;
+    
 
-    public Animator _animator;
     [SerializeField] private float _sprintSpeed;
     [SerializeField] public float _speed;
-    [SerializeField] public float _agentSpeed;
+    [SerializeField] private float attackAnimRootDuration;
+    private float lastAttackTime;
+    
 
     private baseCharacter movement;
-    private int latestAttackIndex = 0;
+    private PlayerAnimations playerAnimatior;
+
 
     // Start is called before the first frame update
     void Start()
     {
         movement = GetComponent<baseCharacter>();
+        playerAnimatior = GetComponent<PlayerAnimations>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (Time.time - lastAttackTime > attackAnimRootDuration)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                lastAttackTime = Time.time;
+                playerAnimatior.DoPunchAnim();
+                movement.agent.velocity =Vector3.zero;
+            }
+            else
+            {
+                MoveUpdate();
+            }
+        }
+        
+        
+
+        //SearchingEnemies
+
+        SearchTarget();
+        SetTarget();
+
+
+    }
+
+    private void MoveUpdate()
     {
         //input gathering
         var forward = Camera.main.transform.forward;
@@ -43,14 +73,10 @@ public class PlayerMovement : MonoBehaviour
 
         var input = forward + right;
 
-        movement.MovePlayer(input,_speed);
-        PlayerAnimations(_animator,movement.agent.velocity);
-        //SearchingEnemies
+        var agentSpeed = Input.GetKey(KeyCode.LeftShift) ? _sprintSpeed : _speed;
 
-        SearchTarget();
-        SetTarget();
 
-       
+        movement.MovePlayer(input, agentSpeed);
     }
 
     private void SearchTarget()
@@ -98,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
@@ -107,47 +134,6 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void PlayerAnimations(Animator animator, Vector3 direction)
-    {
-        //sprint Animations
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            movement.agent.speed =_sprintSpeed;
-            animator.SetBool("isSprinting", true);
-        }
-
-        if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            movement.agent.speed = _agentSpeed;
-            animator.SetBool("isSprinting", false);
-        }
-
-        //attack Animations
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            if (latestAttackIndex > 0)
-            {
-                latestAttackIndex = 0;
-            }
-            else
-            {
-                latestAttackIndex = 1;
-            }
-            animator.SetInteger("attackIndex", latestAttackIndex);
-            animator.SetBool("isAttacking", true);
-        }
-        if (!Input.GetKey(KeyCode.Mouse0))
-        {
-            animator.SetBool("isAttacking", false);
-        }
-
-        //run Animations
-        if (direction.magnitude > 0f)
-        {
-            _animator.SetBool("isMoving", true);
-        }
-        else _animator.SetBool("isMoving", false);
-
-    }
+    
     
 }

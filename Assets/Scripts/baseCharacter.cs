@@ -38,16 +38,13 @@ public class baseCharacter : MonoBehaviour
     {
         agent.SetDestination(target);
     }
-    public void MovePlayer(Vector3 input,float speed)
+    public void MovePlayer(Vector3 input,float targetSpeed)
     {
-        var targetSpeed = input.magnitude > 0 ? agent.speed : 0;
-        speed = Mathf.MoveTowards(speed, targetSpeed, agent.acceleration);
+        targetSpeed = input.magnitude > 0 ? targetSpeed : 0;
+        var speed = Mathf.MoveTowards(agent.velocity.magnitude, targetSpeed, agent.acceleration*Time.deltaTime);
 
         var direction = input.normalized;
         agent.velocity = direction * speed;
-
-        
-
     }
 
     

@@ -1,62 +1,8 @@
 fileFormatVersion: 2
-guid: bf4ca3ceeed3f264f8997e70a44c1cea
+guid: 8de69417302e44f49b48b4e3110effd4
 ModelImporter:
   serializedVersion: 20300
-  internalIDToNameTable:
-  - first:
-      74: 598546621539621296
-    second: rig|deathAction
-  - first:
-      74: -5144787083388343762
-    second: rig|deathCycle
-  - first:
-      74: -1288134927586335388
-    second: rig|flex
-  - first:
-      74: 4489374680661729079
-    second: rig|flex.001
-  - first:
-      74: -5217903670569144049
-    second: rig|groundSlam
-  - first:
-      74: 1599155768152908184
-    second: rig|idle
-  - first:
-      74: 3958742721063303258
-    second: rig|punch.L
-  - first:
-      74: 3788691225585602509
-    second: rig|punch.R
-  - first:
-      74: -3864758357222512870
-    second: rig|run.forward1
-  - first:
-      74: -4688294756048921508
-    second: rig|run.forward111
-  - first:
-      74: 1341341528941138362
-    second: rig|run.forward2
-  - first:
-      74: -5390667681055152817
-    second: rig|run.forward2better
-  - first:
-      74: -143872276833139304
-    second: rig|run515
-  - first:
-      74: 5452563737058314565
-    second: rig|run515.001
-  - first:
-      74: -7832212954815985967
-    second: rig|sprint
-  - first:
-      74: -3154397555439104915
-    second: rig|t-pose
-  - first:
-      74: 1119962755429331281
-    second: rig|takeDmg
-  - first:
-      74: -5895137608664627140
-    second: rig|throw
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -140,7 +86,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: c_pos
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -148,7 +94,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0

@@ -6779,6 +6779,14 @@ PrefabInstance:
       value: 17.31
       objectReference: {fileID: 0}
     - target: {fileID: 1705216580, guid: 372385132be38544fb9a7d42485d87fe, type: 3}
+      propertyPath: _speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705216580, guid: 372385132be38544fb9a7d42485d87fe, type: 3}
+      propertyPath: _sprintSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705216580, guid: 372385132be38544fb9a7d42485d87fe, type: 3}
       propertyPath: attackAnimRootDuration
       value: 0.5
       objectReference: {fileID: 0}

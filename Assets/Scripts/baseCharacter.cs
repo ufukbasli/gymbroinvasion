@@ -10,8 +10,9 @@ public class baseCharacter : MonoBehaviour
     public NavMeshAgent agent;
     public Image healthbar;
     public float hitPoint;
- 
-    
+    public bool isDead;
+
+
 
     private float _currentHitPoint;
     
@@ -21,9 +22,10 @@ public class baseCharacter : MonoBehaviour
     void Start()
     {
         _currentHitPoint = hitPoint;
-       
+        isDead = false;
 
-        
+
+
     }
 
     // Update is called once per frame
@@ -58,13 +60,15 @@ public class baseCharacter : MonoBehaviour
     {
         if (_currentHitPoint <= 0f)
         {
-            Destroy(this.gameObject);
+            isDead = true;
+            Destroy(gameObject, 2);
         }
     }
-
+    
     private void UpdateHealthBar()
     {
         healthbar.fillAmount = Mathf.Clamp(_currentHitPoint / hitPoint, 0, 1f);
+        
     }
 
 

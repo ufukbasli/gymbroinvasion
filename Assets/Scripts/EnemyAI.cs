@@ -1,46 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float enemyDamage;
-    public float enemyAttackSpeed;
+    
 
 
     private baseCharacter movement;
     private GameObject playerLocation;
-    private baseCharacter player;
+    private NavMeshAgent agent;
+    private attackModule gun;
 
     // Start is called before the first frame update
     void Start()
     {
+        gun = GetComponent<attackModule>();
         movement = GetComponent<baseCharacter>();
-
+        agent = GetComponent<NavMeshAgent>();
         playerLocation = GameObject.FindGameObjectWithTag("Player");
-        player= playerLocation.GetComponent<baseCharacter>();
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        movement.MoveTargetAI(playerLocation.transform.position);
-
-        if (movement.agent.pathPending)
+        var dir = playerLocation.transform.position - transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity))
         {
-            if (movement.agent.remainingDistance <= movement.agent.stoppingDistance)
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (!movement.agent.hasPath || movement.agent.velocity.sqrMagnitude == 0f)
-                {
-                    //Invoke("EnemyAttack", enemyAttackSpeed);
-                }
+                agent.stoppingDistance = 10f;
+                gun.Firing();
+            }
+            else
+            {
+                agent.stoppingDistance = 0f;
             }
         }
+        movement.MoveTargetAI(playerLocation.transform.position);
+
+        
     }
 
-    private void EnemyAttack()
-    {
-        player.TakeDamage(enemyDamage);
-    }
+    
 }

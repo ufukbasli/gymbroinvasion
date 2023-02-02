@@ -9,6 +9,7 @@ public class EnemyAnimations : MonoBehaviour
     [SerializeField] public NavMeshAgent agent;
 
     private baseCharacter deathController;
+    private float agentSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,16 @@ public class EnemyAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        agentSpeed = agent.velocity.magnitude;
         if (agent.velocity.magnitude > 0.1f)
         {
             _animator.SetBool("isMoving",true);
+            
         }
         else
         {
+            
+
             _animator.SetBool("isMoving", false);
         }
 
@@ -40,5 +45,10 @@ public class EnemyAnimations : MonoBehaviour
         var deathIndex = Random.Range(0, 1);
         _animator.SetInteger("DeathIndex", deathIndex);
         _animator.SetTrigger("Die");
+    }
+
+    public void FiringAnim()
+    {
+        _animator.SetTrigger("Fired");
     }
 }

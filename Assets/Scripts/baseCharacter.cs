@@ -10,10 +10,10 @@ public class baseCharacter : MonoBehaviour
     public NavMeshAgent agent;
     public Image healthbar;
     public float hitPoint;
-    public bool isDead;
+    public bool isDead { get; set; }
+    public float knockbackDistance;
 
-
-
+    private Rigidbody rb;
     private float _currentHitPoint;
     
     
@@ -23,7 +23,7 @@ public class baseCharacter : MonoBehaviour
     {
         _currentHitPoint = hitPoint;
         isDead = false;
-
+        rb = GetComponent<Rigidbody>();
 
 
     }
@@ -31,7 +31,7 @@ public class baseCharacter : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Die();
+        
         UpdateHealthBar();
         
     }
@@ -50,18 +50,30 @@ public class baseCharacter : MonoBehaviour
     }
 
     
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector3 attacker)
     {
         _currentHitPoint -= damage;
+        var dir = this.transform.position - attacker; 
         
+        rb.AddForce(dir*knockbackDistance, ForceMode.Impulse);
+        
+        Die();
+        
+    }
+    public void PlayerTakeDamage(float damage)
+    {
+        _currentHitPoint -= damage;
+        Die();
+
     }
 
     void Die()
     {
+        
         if (_currentHitPoint <= 0f)
         {
             isDead = true;
-            Destroy(gameObject, 2);
+            Destroy(gameObject, 1.8f);
         }
     }
     

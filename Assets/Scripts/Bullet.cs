@@ -34,14 +34,11 @@ public class Bullet : MonoBehaviour
         if (target != null)
         {
 
-            target.TakeDamage(damage);
+            target.TakeDamage(damage,this.transform.position);
 
         }
 
         DestroyBullet();
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
+    
 }

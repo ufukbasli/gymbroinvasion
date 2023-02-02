@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class attackModule : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class attackModule : MonoBehaviour
     
     public Transform muzzle;
     public float startTimeBtwShots;
-
+    public bool canFire { get; set; }
     private float timeBtwShots;
+    private NavMeshAgent agent;
+    private EnemyAnimations _animator;
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<EnemyAnimations>();
         timeBtwShots = 0;
     }
 
@@ -20,28 +25,37 @@ public class attackModule : MonoBehaviour
     void Update()
     {
 
-        
-
         if (timeBtwShots <= 0f)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Instantiate(bullet, muzzle.position, transform.rotation);
-
-                timeBtwShots = startTimeBtwShots;
-            }
-
+            canFire = true;
             
         }
         else
         {
 
             timeBtwShots -= Time.deltaTime;
-            
-            
+
+
         }
-        
+
+
+
     }
 
+    public void Firing()
+    {
+        if (canFire)
+        {
+            _animator.FiringAnim();
+            Instantiate(bullet, muzzle.position, transform.rotation);
+
+            timeBtwShots = startTimeBtwShots;
+
+            canFire = false;
+            Debug.Log("fired");
+        }
+        
+        
+    }
    
 }

@@ -25,7 +25,7 @@ public class PlayerPunch : MonoBehaviour
         if (enemy != null)
         {
             CameraShake.Instance.CameraShaker();
-            enemy.TakeDamage(punchDmg);
+            enemy.TakeDamage(punchDmg,this.transform.position);
         }
     }
     

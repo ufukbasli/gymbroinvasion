@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         var input = forward + right;
 
         var agentSpeed = Input.GetKey(KeyCode.LeftShift) ? _sprintSpeed : _speed;
-
+        
 
         movement.MovePlayer(input, agentSpeed);
     }

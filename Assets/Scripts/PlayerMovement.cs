@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float _speed;
     [SerializeField] private float attackAnimRootDuration;
     private float lastAttackTime;
-    
+    public bool canMove { get; set; }
 
     private baseCharacter movement;
     private PlayerAnimations playerAnimatior;
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = GetComponent<baseCharacter>();
         playerAnimatior = GetComponent<PlayerAnimations>();
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -74,9 +75,12 @@ public class PlayerMovement : MonoBehaviour
         var input = forward + right;
 
         var agentSpeed = Input.GetKey(KeyCode.LeftShift) ? _sprintSpeed : _speed;
-        
 
-        movement.MovePlayer(input, agentSpeed);
+        if (canMove)
+        {
+            movement.MovePlayer(input, agentSpeed);
+        }
+        
     }
 
     private void SearchTarget()

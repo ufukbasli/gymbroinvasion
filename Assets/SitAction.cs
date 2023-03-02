@@ -9,48 +9,55 @@ public class SitAction : MonoBehaviour
 
     private bool canSit;
     private bool isSitting;
-    private baseCharacter player;
+    private baseCharacter sittingPlayer;
     private PlayerAnimations anim;
+    private List<baseCharacter> players = new List<baseCharacter>();
     // Start is called before the first frame update
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
-            if (canSit)
+            if (sittingPlayer == null)
             {
-                if (!isSitting)
+                if (players.Count > 0)
                 {
-                    col.enabled = false;
-                    if (player != null)
-                    {
-                        anim._animator.SetTrigger("Sit");
+                    sittingPlayer= players[0];
+                    sittingPlayer.agent.velocity = Vector3.zero;
+                    sittingPlayer.agent.Warp(sitPos.position);
+                    //player.transform.position = sitPos.position;
+                    sittingPlayer.transform.LookAt(this.transform.forward);
+                    anim=sittingPlayer.gameObject.GetComponent<PlayerAnimations>();
+                    anim._animator.SetTrigger("Sit");
 
-                        player.agent.Warp(sitPos.position);
-                        player.transform.LookAt(this.transform.forward);
-                        player.agent.velocity = Vector3.zero;
+                    var movement = sittingPlayer.gameObject.GetComponent<PlayerMovement>();
+                    movement.canMove = false;
 
 
-
-                    }
                 }
-                else
-                {
-                    anim._animator.SetTrigger("StandUp");
-                }
+            }
+            else
+            {
+                anim._animator.SetTrigger("StandUp");
+                var movement = sittingPlayer.gameObject.GetComponent<PlayerMovement>();
+                movement.canMove = true;
+                sittingPlayer = null;
+
                 
             }
+
             
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        anim = other.GetComponent<PlayerAnimations>();
-        player = other.GetComponent<baseCharacter>();
+       
+        var player = other.GetComponent<baseCharacter>();
         if (player != null)
         {
-            Debug.Log("playerEntered");
-            canSit = true;
+            players.Add(player);
+            
+            
+            
         }
 
         
@@ -60,12 +67,11 @@ public class SitAction : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        player = other.GetComponent<baseCharacter>();
+        var player = other.GetComponent<baseCharacter>();
         if (player != null)
         {
+            players.Remove(player);
             
-            canSit = false;
-            player = null;
         }
     }
 }

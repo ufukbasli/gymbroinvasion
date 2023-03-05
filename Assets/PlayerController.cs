@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,12 +8,17 @@ public class PlayerController : MonoBehaviour {
     public float minimumMomentum = .1f;
     public float speedChangeAcceleration = .1f;
     public float speedChangeBrake = .1f;
+    public float hitSpeedChange = .1f;
+    public PlayerReference playerReference;
     private CharacterController characterController;
     private Camera cam;
-    private Vector3 momentum;
+    [NonSerialized] public Vector3 momentum;
+    private Rigidbody body;
     private void Awake() {
         characterController = GetComponent<CharacterController>();
         cam = Camera.main;
+        playerReference.playerController = this;
+        body = GetComponent<Rigidbody>();
     }
     private void Update() {
         var input = GetInput();
@@ -40,12 +46,16 @@ public class PlayerController : MonoBehaviour {
         if (input.magnitude <= .3f) {
             momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
         }
-
         if (momentum.magnitude > maxSpeed) {
             momentum = momentum.normalized * maxSpeed;
         }
-        characterController.Move(momentum);
-        transform.LookAt(transform.position + momentum.normalized);
+        
+        characterController.Move(momentum + Vector3.down);
+        
+        if (momentum.magnitude > minimumMomentum) {
+            transform.LookAt(transform.position + momentum.normalized);
+        }
+        body.angularVelocity = Vector3.zero;
     }
     private Vector3 GetInput() {
         var forward = cam.transform.forward;
@@ -58,5 +68,13 @@ public class PlayerController : MonoBehaviour {
         right *= Input.GetAxis("Horizontal");
         var input = forward + right;
         return Vector3.ClampMagnitude(input, 1f);
+    }
+    public void Hit(EnemyMan man) {
+        momentum += momentum.normalized * (-hitSpeedChange);
+    }
+    private void OnDestroy() {
+        if (playerReference.playerController == this) {
+            playerReference.playerController = null;
+        }
     }
 }

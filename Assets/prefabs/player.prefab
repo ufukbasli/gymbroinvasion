@@ -28177,12 +28177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5607117436487685496}
-  - component: {fileID: 5168464802915041818}
-  - component: {fileID: 8227228890721568065}
-  - component: {fileID: 8227228890721568077}
   - component: {fileID: 8227228890721568076}
-  - component: {fileID: 8227228890721568079}
-  - component: {fileID: 8420504833638969470}
   - component: {fileID: 8420504833638969471}
   - component: {fileID: 8420504833638969464}
   m_Layer: 0
@@ -28209,55 +28204,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5168464802915041818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420504833638969465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f5fabafd1f8b942a3b7504d67a5f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  healthbar: {fileID: 8227228890725640020}
-  hitPoint: 100
-  knockbackDistance: 0
---- !u!114 &8227228890721568065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420504833638969465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc6b30598b8764546949d1fb429a9d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterMask:
-    serializedVersion: 2
-    m_Bits: 128
-  detectRange: 0
-  _sprintSpeed: 12
-  _speed: 8
-  attackAnimRootDuration: 0.5
---- !u!114 &8227228890721568077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420504833638969465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7398bcc1d7c43d4fa8888ad8a9a4fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  punchDmg: 90
-  punchCollision: {fileID: 8227228891875160602}
 --- !u!54 &8227228890721568076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28274,34 +28220,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8227228890721568079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420504833638969465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4e9c8d4c67fd742a0c22c4662ac6f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 5161581939716850909}
-  agent: {fileID: 0}
---- !u!136 &8420504833638969470
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420504833638969465}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.44
-  m_Height: 1.7
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!114 &8420504833638969471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28314,6 +28232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b041cf5ec8c1a4988b1b35cdeb211d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 0.1
+  angleChangeSpeed: 180
+  minimumMomentum: 0.05
+  speedChangeAcceleration: 0.1
+  speedChangeBrake: 0.1
+  playerReference: {fileID: 11400000, guid: dcf0294cd28126340acacdbf434afa87, type: 2}
 --- !u!143 &8420504833638969464
 CharacterController:
   m_ObjectHideFlags: 0

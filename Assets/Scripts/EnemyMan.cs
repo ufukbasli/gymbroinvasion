@@ -33,7 +33,6 @@ public class EnemyMan : MonoBehaviour {
                 Die(player.momentum);
             }
         }
-
     }
     private void Die(Vector3 momentum) {
         enabled = false;

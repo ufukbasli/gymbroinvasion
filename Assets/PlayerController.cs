@@ -5,10 +5,11 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed = .3f;
     public float angleChangeSpeed = 90f;
     public float minimumMomentum = .1f;
-    public float speedChange = .1f;
+    public float speedChangeAcceleration = .1f;
+    public float speedChangeBrake = .1f;
     private CharacterController characterController;
     private Camera cam;
-    public Vector3 momentum;
+    private Vector3 momentum;
     private void Awake() {
         characterController = GetComponent<CharacterController>();
         cam = Camera.main;
@@ -26,18 +27,18 @@ public class PlayerController : MonoBehaviour {
                 }
                 
                 if (angle <= 45) {
-                    momentum += momentum.normalized * (speedChange * Time.deltaTime);
+                    momentum += momentum.normalized * (speedChangeAcceleration * Time.deltaTime);
                 }
                 else if (angle > 45 && angle <= 90) {
                 }
                 else {
-                    momentum += momentum.normalized * (-speedChange * Time.deltaTime);
+                    momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
 
                 }
             }
         }
         if (input.magnitude <= .3f) {
-            momentum += momentum.normalized * (-speedChange * Time.deltaTime);
+            momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
         }
 
         if (momentum.magnitude > maxSpeed) {

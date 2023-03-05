@@ -39,6 +39,15 @@ ModelImporter:
   - first:
       74: -2282383924012439423
     second: root|walk
+  - first:
+      74: -6055020455994687219
+    second: root|charge_1
+  - first:
+      74: 1181026699778228381
+    second: root|charge_2
+  - first:
+      74: -6002819589104198505
+    second: root|charge_action
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -79,44 +88,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'root|dropkick' has import animation warnings
+    animationImportWarnings: "\nClip 'root|charge_1' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'leg_stretch.r' has scale animation that
-      will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
-      'root|idle' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'leg_stretch.r'
-      has scale animation that will be discarded.\n\t'foot.r' has scale animation
-      that will be discarded.\n\nClip 'root|lowkick.1' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'index1.r' has translation animation that
-      will be discarded.\n\t'index2.r' has translation animation that will be discarded.\n\t'middle1.r'
-      has translation animation that will be discarded.\n\t'middle2.r' has translation
-      animation that will be discarded.\n\t'pinky1.r' has translation animation that
-      will be discarded.\n\t'pinky2.r' has translation animation that will be discarded.\n\t'ring1.r'
-      has translation animation that will be discarded.\n\t'ring2.r' has translation
-      animation that will be discarded.\n\t'leg_stretch.r' has scale animation that
-      will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
-      'root|punch1' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_01.x'
-      has translation animation that will be discarded.\n\t'spine_02.x' has translation
-      animation that will be discarded.\n\t'leg_stretch.r' has scale animation that
-      will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
-      'root|punch2' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_01.x'
-      has translation animation that will be discarded.\n\t'spine_02.x' has translation
-      animation that will be discarded.\n\t'leg_stretch.r' has scale animation that
-      will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
-      'root|punch3' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_01.x'
-      has translation animation that will be discarded.\n\t'spine_02.x' has translation
-      animation that will be discarded.\n\t'hand.r' has scale animation that will
-      be discarded.\n\t'leg_stretch.r' has scale animation that will be discarded.\n\t'foot.r'
-      has scale animation that will be discarded.\n\nClip 'root|run' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'spine_01.x' has translation
-      animation that will be discarded.\n\t'spine_02.x' has translation animation
-      that will be discarded.\n\t'index1.l' has translation animation that will be
-      discarded.\n\t'index2.l' has translation animation that will be discarded.\n\t'middle2.l'
+      to improve retargeting quality.\n\t'index1.l' has translation animation that
+      will be discarded.\n\t'index2.l' has translation animation that will be discarded.\n\t'middle2.l'
       has translation animation that will be discarded.\n\t'pinky2.l' has translation
       animation that will be discarded.\n\t'ring1.l' has translation animation that
       will be discarded.\n\t'ring2.l' has translation animation that will be discarded.\n\t'index1.r'
@@ -124,9 +99,74 @@ ModelImporter:
       animation that will be discarded.\n\t'middle2.r' has translation animation
       that will be discarded.\n\t'pinky2.r' has translation animation that will be
       discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\t'ring2.r'
+      has translation animation that will be discarded.\n\nClip 'root|charge_2' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'index1.l' has
+      translation animation that will be discarded.\n\t'index2.l' has translation
+      animation that will be discarded.\n\t'middle2.l' has translation animation
+      that will be discarded.\n\t'pinky2.l' has translation animation that will be
+      discarded.\n\t'ring1.l' has translation animation that will be discarded.\n\t'ring2.l'
+      has translation animation that will be discarded.\n\t'index1.r' has translation
+      animation that will be discarded.\n\t'index2.r' has translation animation that
+      will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
+      has translation animation that will be discarded.\n\t'ring1.r' has translation
+      animation that will be discarded.\n\t'ring2.r' has translation animation that
+      will be discarded.\n\nClip 'root|dropkick' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_02.x' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'leg_stretch.r' has scale
+      animation that will be discarded.\n\t'foot.r' has scale animation that will
+      be discarded.\n\nClip 'root|idle' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'leg_stretch.r' has scale animation that will be discarded.\n\t'foot.r'
+      has scale animation that will be discarded.\n\nClip 'root|lowkick.1' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'index1.r'
+      has translation animation that will be discarded.\n\t'index2.r' has translation
+      animation that will be discarded.\n\t'middle1.r' has translation animation
+      that will be discarded.\n\t'middle2.r' has translation animation that will
+      be discarded.\n\t'pinky1.r' has translation animation that will be discarded.\n\t'pinky2.r'
+      has translation animation that will be discarded.\n\t'ring1.r' has translation
+      animation that will be discarded.\n\t'ring2.r' has translation animation that
+      will be discarded.\n\t'leg_stretch.r' has scale animation that will be discarded.\n\t'foot.r'
+      has scale animation that will be discarded.\n\nClip 'root|punch1' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_01.x' has translation
+      animation that will be discarded.\n\t'spine_02.x' has translation animation
+      that will be discarded.\n\t'spine_02.x' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'leg_stretch.r' has scale
+      animation that will be discarded.\n\t'foot.r' has scale animation that will
+      be discarded.\n\nClip 'root|punch2' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'spine_01.x' has translation animation that will be
+      discarded.\n\t'spine_02.x' has translation animation that will be discarded.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'leg_stretch.r'
+      has scale animation that will be discarded.\n\t'foot.r' has scale animation
+      that will be discarded.\n\nClip 'root|punch3' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_01.x' has translation animation that
+      will be discarded.\n\t'spine_02.x' has translation animation that will be discarded.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'hand.r'
+      has scale animation that will be discarded.\n\t'leg_stretch.r' has scale animation
+      that will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
+      'root|run' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_01.x'
+      has translation animation that will be discarded.\n\t'spine_02.x' has translation
+      animation that will be discarded.\n\t'spine_02.x' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'index1.l' has translation
+      animation that will be discarded.\n\t'index2.l' has translation animation that
+      will be discarded.\n\t'middle2.l' has translation animation that will be discarded.\n\t'pinky2.l'
+      has translation animation that will be discarded.\n\t'ring1.l' has translation
+      animation that will be discarded.\n\t'ring2.l' has translation animation that
+      will be discarded.\n\t'index1.r' has translation animation that will be discarded.\n\t'index2.r'
+      has translation animation that will be discarded.\n\t'middle2.r' has translation
+      animation that will be discarded.\n\t'pinky2.r' has translation animation that
+      will be discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\t'ring2.r'
       has translation animation that will be discarded.\n\nClip 'root|sit-action'
       has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'index1.l'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'index1.l'
       has translation animation that will be discarded.\n\t'index2.l' has translation
       animation that will be discarded.\n\t'middle1.l' has translation animation
       that will be discarded.\n\t'middle2.l' has translation animation that will
@@ -142,22 +182,27 @@ ModelImporter:
       animation that will be discarded.\n\t'thigh_stretch.r' has scale animation
       that will be discarded.\n\t'leg_stretch.r' has scale animation that will be
       discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
+      'root|sit-cycle' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
       'root|sprint' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_01.x'
-      has translation animation that will be discarded.\n\t'index1.l' has translation
-      animation that will be discarded.\n\t'index2.l' has translation animation that
-      will be discarded.\n\t'middle1.l' has translation animation that will be discarded.\n\t'middle2.l'
-      has translation animation that will be discarded.\n\t'pinky1.l' has translation
-      animation that will be discarded.\n\t'pinky2.l' has translation animation that
-      will be discarded.\n\t'ring1.l' has translation animation that will be discarded.\n\t'ring2.l'
-      has translation animation that will be discarded.\n\t'index1.r' has translation
-      animation that will be discarded.\n\t'index2.r' has translation animation that
-      will be discarded.\n\t'middle1.r' has translation animation that will be discarded.\n\t'middle2.r'
-      has translation animation that will be discarded.\n\t'pinky1.r' has translation
-      animation that will be discarded.\n\t'pinky2.r' has translation animation that
-      will be discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\t'ring2.r'
-      has translation animation that will be discarded.\n\nClip 'root|walk' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      has translation animation that will be discarded.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'index1.l'
+      has translation animation that will be discarded.\n\t'index2.l' has translation
+      animation that will be discarded.\n\t'middle1.l' has translation animation
+      that will be discarded.\n\t'middle2.l' has translation animation that will
+      be discarded.\n\t'pinky1.l' has translation animation that will be discarded.\n\t'pinky2.l'
+      has translation animation that will be discarded.\n\t'ring1.l' has translation
+      animation that will be discarded.\n\t'ring2.l' has translation animation that
+      will be discarded.\n\t'index1.r' has translation animation that will be discarded.\n\t'index2.r'
+      has translation animation that will be discarded.\n\t'middle1.r' has translation
+      animation that will be discarded.\n\t'middle2.r' has translation animation
+      that will be discarded.\n\t'pinky1.r' has translation animation that will be
+      discarded.\n\t'pinky2.r' has translation animation that will be discarded.\n\t'ring1.r'
+      has translation animation that will be discarded.\n\t'ring2.r' has translation
+      animation that will be discarded.\n\nClip 'root|walk' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'index1.l' has translation
       animation that will be discarded.\n\t'index2.l' has translation animation that
       will be discarded.\n\t'middle2.l' has translation animation that will be discarded.\n\t'pinky2.l'

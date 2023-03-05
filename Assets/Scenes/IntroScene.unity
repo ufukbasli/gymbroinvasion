@@ -694,7 +694,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 30.17
+  m_CameraDistance: 9.45
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -17493,7 +17493,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1282932516}
   m_Lens:
-    FieldOfView: 45
+    FieldOfView: 33
     OrthographicSize: 9
     NearClipPlane: 0.1
     FarClipPlane: 5000.06
@@ -17515,7 +17515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833765359}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -31.315002, y: 21.523413, z: -36.635002}
+  m_LocalPosition: {x: -20.955, y: 6.872159, z: -26.275002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 42446360}
@@ -18952,7 +18952,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000.06
-  field of view: 45
+  field of view: 33
   orthographic: 0
   orthographic size: 9
   m_Depth: 0
@@ -18978,7 +18978,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -31.315002, y: 21.523413, z: -36.635002}
+  m_LocalPosition: {x: -20.955, y: 6.872159, z: -26.275002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -32828,15 +32828,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: maxSpeed
-      value: 0.04
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: momentum.x
-      value: 0.000003640569
+      value: -0.015937913
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: momentum.z
-      value: -0.0000036676356
+      value: 0.01967984
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: speedChange
@@ -32844,7 +32844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: minimumMomentum
-      value: 0.01
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: angleChangeSpeed
@@ -34488,6 +34488,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0de0f254848d840449cf0acc0e095301, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e4483c731480c7e4fbe40c06ac265137, type: 2}
     - target: {fileID: 919132149155446097, guid: 0de0f254848d840449cf0acc0e095301, type: 3}
       propertyPath: m_Name
       value: scifi grounds

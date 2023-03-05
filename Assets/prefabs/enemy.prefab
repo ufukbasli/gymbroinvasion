@@ -2391,6 +2391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerReference: {fileID: 11400000, guid: dcf0294cd28126340acacdbf434afa87, type: 2}
   minMomentumToKnock: 0
+  hipBody: {fileID: 4032131532572659433}
+  knockBack: 5000
 --- !u!208 &9207380705751692030
 NavMeshObstacle:
   m_ObjectHideFlags: 0

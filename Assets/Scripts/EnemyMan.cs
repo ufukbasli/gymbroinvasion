@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class EnemyMan : MonoBehaviour {
     public PlayerReference playerReference;
     public float minMomentumToKnock = .01f;
+    public Rigidbody hipBody;
+    public float knockBack = 1f;
     private NavMeshAgent agent;
     private Animator animator;
     private void Awake() {
@@ -27,12 +29,12 @@ public class EnemyMan : MonoBehaviour {
         if (player != null) {
             if (player.momentum.magnitude >= minMomentumToKnock) {
                 player.Hit(this);
-                Die();
+                Die(player.momentum);
             }
         }
 
     }
-    private void Die() {
+    private void Die(Vector3 momentum) {
         enabled = false;
         agent.enabled = false;
         animator.enabled = false;
@@ -41,5 +43,6 @@ public class EnemyMan : MonoBehaviour {
             body.isKinematic = false;
         }
         GetComponent<CapsuleCollider>().enabled = false;
+        hipBody.AddForce(momentum * knockBack, ForceMode.Impulse);
     }
 }

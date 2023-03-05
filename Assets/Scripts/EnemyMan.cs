@@ -8,6 +8,7 @@ public class EnemyMan : MonoBehaviour {
     public float minMomentumToKnock = .01f;
     public Rigidbody hipBody;
     public float knockBack = 1f;
+    public float knockBackUp = 1f;
     private NavMeshAgent agent;
     private Animator animator;
     private void Awake() {
@@ -44,5 +45,6 @@ public class EnemyMan : MonoBehaviour {
         }
         GetComponent<CapsuleCollider>().enabled = false;
         hipBody.AddForce(momentum * knockBack, ForceMode.Impulse);
+        hipBody.AddForce(Vector3.up * knockBackUp, ForceMode.Impulse);
     }
 }

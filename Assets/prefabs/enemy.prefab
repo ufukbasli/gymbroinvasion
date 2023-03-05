@@ -2393,6 +2393,7 @@ MonoBehaviour:
   minMomentumToKnock: 0
   hipBody: {fileID: 4032131532572659433}
   knockBack: 5000
+  knockBackUp: 100
 --- !u!208 &9207380705751692030
 NavMeshObstacle:
   m_ObjectHideFlags: 0

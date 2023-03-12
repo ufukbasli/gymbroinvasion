@@ -28,19 +28,19 @@ public class PlayerController : MonoBehaviour {
         else {
             if (input.magnitude > .3f) {
                 var angle = Vector3.Angle(momentum, input);
-                if (angle <= 90) {
+                if (angle <= 135) {
                     momentum = Vector3.RotateTowards(momentum, input, angleChangeSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);
                 }
                 
                 if (angle <= 45) {
                     momentum += momentum.normalized * (speedChangeAcceleration * Time.deltaTime);
+                    //speeding up
                 }
-                else if (angle > 45 && angle <= 90) {
-                }
-                else {
+                else if (angle >= 90) {
                     momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
-
+                    //sliding
                 }
+
             }
         }
         if (input.magnitude <= .3f) {

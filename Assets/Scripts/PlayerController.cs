@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public PlayerReference playerReference;
     private CharacterController characterController;
     private Camera cam;
+    private PlayerAnimations anim;
     [NonSerialized] public Vector3 momentum;
     private Rigidbody body;
     private void Awake() {
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour {
         cam = Camera.main;
         playerReference.playerController = this;
         body = GetComponent<Rigidbody>();
+        anim = GetComponent<PlayerAnimations>();
+
     }
     private void Update() {
         var input = GetInput();
@@ -45,9 +48,11 @@ public class PlayerController : MonoBehaviour {
         }
         if (input.magnitude <= .3f) {
             momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
+            
         }
         if (momentum.magnitude > maxSpeed) {
             momentum = momentum.normalized * maxSpeed;
+            
         }
         
         characterController.Move(momentum + Vector3.down);
@@ -56,6 +61,9 @@ public class PlayerController : MonoBehaviour {
             transform.LookAt(transform.position + momentum.normalized);
         }
         body.angularVelocity = Vector3.zero;
+
+        Debug.Log(momentum.magnitude);
+        anim.SetMomentum(momentum.magnitude);
     }
     private Vector3 GetInput() {
         var forward = cam.transform.forward;

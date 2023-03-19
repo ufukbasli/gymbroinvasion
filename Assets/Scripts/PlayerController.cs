@@ -54,8 +54,9 @@ public class PlayerController : MonoBehaviour {
             momentum = momentum.normalized * maxSpeed;
             
         }
-        
+
         characterController.Move((momentum + Vector3.down) * Time.deltaTime);
+        
         
         if (momentum.magnitude > minimumMomentum) {
             transform.LookAt(transform.position + momentum.normalized);

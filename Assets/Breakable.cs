@@ -25,6 +25,12 @@ public class Breakable : MonoBehaviour
                 }
                 myBody.isKinematic = true;
                 myCollider.enabled = false;
+                foreach (var body in bodies)
+                {
+                    body.gameObject.SetActive(false);
+
+
+                }
             }
         }
     }

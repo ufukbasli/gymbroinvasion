@@ -2742,7 +2742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419153911}
   m_LocalRotation: {x: -0.0033116657, y: -0, z: -0, w: 0.9999945}
-  m_LocalPosition: {x: -3.02, y: 0.87, z: 93.31}
+  m_LocalPosition: {x: -3.02, y: 0.89, z: 95.99}
   m_LocalScale: {x: 6.007472, y: 2.3923, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3222,7 +3222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598107140}
   m_LocalRotation: {x: -0.0033116657, y: -0, z: -0, w: 0.9999945}
-  m_LocalPosition: {x: 2.29, y: 0.87, z: 99.46}
+  m_LocalPosition: {x: 2.29, y: 0.91, z: 105.53}
   m_LocalScale: {x: 6.007472, y: 2.3923, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4102,14 +4102,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833765359}
-  m_LocalRotation: {x: 0.3286194, y: 0, z: 0, w: 0.9444625}
-  m_LocalPosition: {x: 0, y: 7.758916, z: -1.5088289}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: -5.5978084, y: 8.725875, z: 1.6709341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 42446360}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 38.37, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!114 &833765362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4968,8 +4968,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3286194, y: 0, z: 0, w: 0.9444625}
-  m_LocalPosition: {x: 0, y: 7.758916, z: -1.5088289}
+  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: -5.5978084, y: 8.725875, z: 1.6709341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12108,8 +12108,20 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
+      propertyPath: slideBoost
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: minimumMomentum
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
+      propertyPath: slideDeplateRate
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
+      propertyPath: slideRechargeRate
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: speedChangeAcceleration

@@ -9,10 +9,17 @@ public class PlayerController : MonoBehaviour {
     public float speedChangeAcceleration = .1f;
     public float speedChangeBrake = .1f;
     public float hitSpeedChange = .1f;
+    public float slideBoost;
+    public float slideDeplateRate;
+    public float slideRechargeRate;
     public PlayerReference playerReference;
     private CharacterController characterController;
     private Camera cam;
     private PlayerAnimations anim;
+    private Vector3 defaultMovement;
+    private float currentSlideBoost;
+    private bool isSliding;
+    private float slideRatio;
     [NonSerialized] public Vector3 momentum;
     private Rigidbody body;
     private void Awake() {
@@ -21,6 +28,9 @@ public class PlayerController : MonoBehaviour {
         playerReference.playerController = this;
         body = GetComponent<Rigidbody>();
         anim = GetComponent<PlayerAnimations>();
+        currentSlideBoost = slideBoost;
+        isSliding = false;
+
 
     }
     private void Update() {
@@ -55,7 +65,44 @@ public class PlayerController : MonoBehaviour {
             
         }
 
-        characterController.Move((momentum + Vector3.down) * Time.deltaTime);
+
+
+        //sliding states 
+        if(!isSliding&& Input.GetKeyDown(KeyCode.LeftShift)&&momentum.magnitude>7)
+        {
+            isSliding = true;
+        }
+        if((isSliding && Input.GetKeyUp(KeyCode.LeftShift) && currentSlideBoost >1)||(isSliding&&currentSlideBoost<.5))
+        {
+            isSliding = false;
+            
+        }
+       
+
+
+        //sliding calculations
+        if (isSliding)
+        {
+            currentSlideBoost -= slideDeplateRate * Time.deltaTime;
+            currentSlideBoost = Mathf.Clamp(currentSlideBoost, 0, slideBoost);
+            anim.SlidingTrue(true);
+            slideRatio = currentSlideBoost;
+        }
+        else
+        {
+            anim.SlidingTrue(false);
+            if (currentSlideBoost < slideBoost)
+            {
+                currentSlideBoost += slideRechargeRate * Time.deltaTime;
+            }
+            else
+            {
+                currentSlideBoost = slideBoost;
+            }
+            slideRatio = 1;
+        }
+
+        characterController.Move((momentum + Vector3.down) * Time.deltaTime*slideRatio);
         
         
         if (momentum.magnitude > minimumMomentum) {
@@ -66,6 +113,8 @@ public class PlayerController : MonoBehaviour {
         Debug.Log(momentum.magnitude);
         anim.SetMomentum(momentum.magnitude);
     }
+
+
     private Vector3 GetInput() {
         var forward = cam.transform.forward;
         var right = cam.transform.right;

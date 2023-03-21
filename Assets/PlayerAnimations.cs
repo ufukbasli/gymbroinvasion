@@ -10,4 +10,9 @@ public class PlayerAnimations : MonoBehaviour
     {
         anim.SetFloat("movementSpeed", momentum);
     }
+
+    public void SlidingTrue(bool sliding)
+    {
+        anim.SetBool("isSliding", sliding);
+    }
 }

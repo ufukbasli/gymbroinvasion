@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
     public float slideDeplateRate;
     public float slideRechargeRate;
     public PlayerReference playerReference;
+    public Transform wallDetector;
+    public LayerMask wallBounceLayerMask;
+    public float wallBounceDistance = 1f;
     private CharacterController characterController;
     private Camera cam;
     private PlayerAnimations anim;
@@ -30,10 +33,10 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponent<PlayerAnimations>();
         currentSlideBoost = slideBoost;
         isSliding = false;
-
-
     }
     private void Update() {
+        WallCollideSystemUpdate();
+        
         var input = GetInput();
         if (momentum.magnitude < minimumMomentum) {
             if (input.magnitude > .3f) momentum = input.normalized * minimumMomentum;
@@ -41,80 +44,61 @@ public class PlayerController : MonoBehaviour {
         else {
             if (input.magnitude > .3f) {
                 var angle = Vector3.Angle(momentum, input);
-                if (angle <= 135) {
-                    momentum = Vector3.RotateTowards(momentum, input, angleChangeSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);
-                }
-                
-                if (angle <= 45) {
-                    momentum += momentum.normalized * (speedChangeAcceleration * Time.deltaTime);
-                    //speeding up
-                }
-                else if (angle >= 90) {
-                    momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
-                    //sliding
-                }
+                if (angle <= 135) momentum = Vector3.RotateTowards(momentum, input, angleChangeSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);
 
+                if (angle <= 45)
+                    momentum += momentum.normalized * (speedChangeAcceleration * Time.deltaTime);
+                //speeding up
+                else if (angle >= 90) momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
+                //sliding
             }
         }
-        if (input.magnitude <= .3f) {
-            momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
-            
-        }
-        if (momentum.magnitude > maxSpeed) {
-            momentum = momentum.normalized * maxSpeed;
-            
-        }
 
-
+        if (input.magnitude <= .3f) momentum += momentum.normalized * (-speedChangeBrake * Time.deltaTime);
+        if (momentum.magnitude > maxSpeed) momentum = momentum.normalized * maxSpeed;
 
         //sliding states 
-        if(!isSliding&& Input.GetKeyDown(KeyCode.LeftShift)&&momentum.magnitude>7)
-        {
-            isSliding = true;
-        }
-        if((isSliding && Input.GetKeyUp(KeyCode.LeftShift) && currentSlideBoost >1)||(isSliding&&currentSlideBoost<.5))
-        {
-            isSliding = false;
-            
-        }
-       
-
+        if (!isSliding && Input.GetKeyDown(KeyCode.LeftShift) && momentum.magnitude > 7) isSliding = true;
+        if ((isSliding && Input.GetKeyUp(KeyCode.LeftShift) && currentSlideBoost > 1) || (isSliding && currentSlideBoost < .5)) isSliding = false;
 
         //sliding calculations
-        if (isSliding)
-        {
+        if (isSliding) {
             currentSlideBoost -= slideDeplateRate * Time.deltaTime;
             currentSlideBoost = Mathf.Clamp(currentSlideBoost, 0, slideBoost);
             anim.SlidingTrue(true);
             slideRatio = currentSlideBoost;
         }
-        else
-        {
+        else {
             anim.SlidingTrue(false);
             if (currentSlideBoost < slideBoost)
-            {
                 currentSlideBoost += slideRechargeRate * Time.deltaTime;
-            }
             else
-            {
                 currentSlideBoost = slideBoost;
-            }
             slideRatio = 1;
         }
 
-        characterController.Move((momentum + Vector3.down) * Time.deltaTime*slideRatio);
-        
-        
-        if (momentum.magnitude > minimumMomentum) {
-            transform.LookAt(transform.position + momentum.normalized);
-        }
+        characterController.Move((momentum + Vector3.down) * Time.deltaTime * slideRatio);
+
+        if (momentum.magnitude > minimumMomentum) transform.LookAt(transform.position + momentum.normalized);
         body.angularVelocity = Vector3.zero;
 
-        Debug.Log(momentum.magnitude);
         anim.SetMomentum(momentum.magnitude);
     }
+    private RaycastHit[] hits = new RaycastHit[10];
+    private void WallCollideSystemUpdate() {
+        //if close to wall
+        // wallDetector.forward;
+        // wallDetector.position;
+        // var ray = new Ray(wallDetector.position, wallDetector.forward);
+        // Physics.RaycastNonAlloc(ray, hits, wallBounceDistance, wallBounceLayerMask);
 
-
+        //go to bounce start state
+        //wait a moment
+        //rotate and edit momentum, update lookat
+        //play bounce end state
+        //re-enable movement
+    }
+    
     private Vector3 GetInput() {
         var forward = cam.transform.forward;
         var right = cam.transform.right;
@@ -128,11 +112,9 @@ public class PlayerController : MonoBehaviour {
         return Vector3.ClampMagnitude(input, 1f);
     }
     public void Hit() {
-        momentum += momentum.normalized * (-hitSpeedChange);
+        momentum += momentum.normalized * -hitSpeedChange;
     }
     private void OnDestroy() {
-        if (playerReference.playerController == this) {
-            playerReference.playerController = null;
-        }
+        if (playerReference.playerController == this) playerReference.playerController = null;
     }
 }

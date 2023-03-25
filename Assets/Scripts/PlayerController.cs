@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour {
         var input = forward + right;
         return Vector3.ClampMagnitude(input, 1f);
     }
-    public void Hit(EnemyMan man) {
+    public void Hit() {
         momentum += momentum.normalized * (-hitSpeedChange);
     }
     private void OnDestroy() {

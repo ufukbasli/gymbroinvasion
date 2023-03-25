@@ -19,9 +19,12 @@ public class Breakable : MonoBehaviour
         var player = other.transform.parent.GetComponent<PlayerController>();
         if (player != null) {
             if (player.momentum.magnitude >= minMomentumToKnock) {
+                player.Hit();
                 foreach (var body in bodies) {
                     body.isKinematic = false;
+                    
                     body.AddExplosionForce(explosionForce, player.transform.position, explosionRadius, upwardsModifier);
+                    Destroy(body.gameObject, 0.7f);
                 }
                 myBody.isKinematic = true;
                 myCollider.enabled = false;

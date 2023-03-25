@@ -29,7 +29,7 @@ public class EnemyMan : MonoBehaviour {
         var player = other.transform.parent.GetComponent<PlayerController>();
         if (player != null) {
             if (player.momentum.magnitude >= minMomentumToKnock) {
-                player.Hit(this);
+                player.Hit();
                 Die(player.momentum);
             }
         }

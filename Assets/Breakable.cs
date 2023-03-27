@@ -9,6 +9,7 @@ public class Breakable : MonoBehaviour
     public float upwardsModifier;
     public Rigidbody myBody;
     public Collider myCollider;
+    public float destroyTime = .7f;
     
     private void Awake() {
         foreach (var body in bodies) {
@@ -24,7 +25,7 @@ public class Breakable : MonoBehaviour
                     body.isKinematic = false;
                     
                     body.AddExplosionForce(explosionForce, player.transform.position, explosionRadius, upwardsModifier);
-                    Destroy(body.gameObject, 0.7f);
+                    Destroy(body.gameObject, destroyTime);
                 }
                 myBody.isKinematic = true;
                 myCollider.enabled = false;

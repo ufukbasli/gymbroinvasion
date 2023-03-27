@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private float slideRatio;
     [NonSerialized] public Vector3 momentum;
     private Rigidbody body;
+    public bool locked { get; set; }
     private void Awake() {
         characterController = GetComponent<CharacterController>();
         cam = Camera.main;
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour {
         WallCollideSystemUpdate();
         
         var input = GetInput();
+        if (locked) {
+            input = Vector3.zero;
+        }
         if (momentum.magnitude < minimumMomentum) {
             if (input.magnitude > .3f) momentum = input.normalized * minimumMomentum;
         }

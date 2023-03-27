@@ -9608,50 +9608,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &1577609570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1577609571}
-  - component: {fileID: 1577609572}
-  m_Layer: 6
-  m_Name: LookAhead
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1577609571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577609570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5607117436487685496}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1577609572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577609570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a46e5bc9e8ea704428d5f2a1acd9c7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!1 &17359356422593866
 GameObject:
   m_ObjectHideFlags: 0
@@ -29706,7 +29662,6 @@ Transform:
   - {fileID: 2282707226636142019}
   - {fileID: 4607571482047842580}
   - {fileID: 628102322214236072}
-  - {fileID: 1577609571}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29748,6 +29703,11 @@ MonoBehaviour:
   slideDeplateRate: 0.4
   slideRechargeRate: 0.4
   playerReference: {fileID: 11400000, guid: dcf0294cd28126340acacdbf434afa87, type: 2}
+  wallDetector: {fileID: 0}
+  wallBounceLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  wallBounceDistance: 1
 --- !u!143 &8420504833638969464
 CharacterController:
   m_ObjectHideFlags: 0

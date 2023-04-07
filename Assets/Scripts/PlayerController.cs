@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask wallBounceLayerMask;
     public float wallBounceDistance = 1f;
     public GameObject gameCam;
+    public FloatingJoystick joystick;
     private CharacterController characterController;
     private Camera cam;
     private PlayerAnimations anim;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         WallCollideSystemUpdate();
         
         var input = GetInput();
+        
         if (locked) {
             input = Vector3.zero;
         }
@@ -117,10 +119,10 @@ public class PlayerController : MonoBehaviour {
         var right = cam.transform.right;
         forward.y = 0;
         forward.Normalize();
-        forward *= Input.GetAxis("Vertical");
+        forward *= joystick.Vertical;
         right.y = 0;
         right.Normalize();
-        right *= Input.GetAxis("Horizontal");
+        right *= joystick.Horizontal;
         var input = forward + right;
         return Vector3.ClampMagnitude(input, 1f);
     }

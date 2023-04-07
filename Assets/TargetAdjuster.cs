@@ -16,6 +16,6 @@ public class TargetAdjuster : MonoBehaviour
     {
         var player = playerReference.playerController;
         //Debug.Log(player.momentum.magnitude);
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y,player.momentum.magnitude/9f);
+        //transform.localPosition+= new Vector3(transform.localPosition.x, transform.localPosition.y,(player.momentum.magnitude/9f) * Time.deltaTime);
     }
 }

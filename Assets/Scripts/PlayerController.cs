@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -100,31 +101,70 @@ public class PlayerController : MonoBehaviour {
         anim.SetMomentum(momentum.magnitude);
     }
     private RaycastHit[] hits = new RaycastHit[10];
-    private void WallCollideSystemUpdate() {
-        //if close to wall
-        // wallDetector.forward;
-        // wallDetector.position;
-        // var ray = new Ray(wallDetector.position, wallDetector.forward);
-        // Physics.RaycastNonAlloc(ray, hits, wallBounceDistance, wallBounceLayerMask);
+    private bool inputDisabled;
 
-        //go to bounce start state
-        //wait a moment
-        //rotate and edit momentum, update lookat
-        //play bounce end state
-        //re-enable movement
+    private void WallCollideSystemUpdate()
+    {
+        var rayStart = wallDetector.position;
+        var rayDirection = wallDetector.forward;
+        var ray = new Ray(rayStart, rayDirection);
+
+        
+        var hitCount = Physics.RaycastNonAlloc(ray, hits, wallBounceDistance, wallBounceLayerMask);
+
+        Debug.DrawRay(rayStart, rayDirection * wallBounceDistance, Color.green);
+
+        if (hitCount > 0)
+        {
+            // Disable movement
+            locked = true;
+            inputDisabled = true;
+            momentum = Vector3.zero;
+
+            // Wait for 0.2 seconds
+            StartCoroutine(BounceOffWallCoroutine(0.2f));
+        }
     }
-    
+
+    private IEnumerator BounceOffWallCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        var hit = hits[0];
+        var normal = hit.normal;
+
+        // Bounce off the wall
+        var bounceDirection = Vector3.Reflect(momentum.normalized, normal);
+        Debug.Log(Vector3.Reflect(momentum.normalized, normal));
+        momentum = bounceDirection * momentum.magnitude;
+        
+        // Rotate towards the new momentum direction
+        transform.rotation = Quaternion.LookRotation(bounceDirection);
+
+        // Enable movement after bouncing
+        locked = false;
+        inputDisabled = false;
+    }
+
+
     private Vector3 GetInput() {
-        var forward = cam.transform.forward;
-        var right = cam.transform.right;
-        forward.y = 0;
-        forward.Normalize();
-        forward *= joystick.Vertical;
-        right.y = 0;
-        right.Normalize();
-        right *= joystick.Horizontal;
-        var input = forward + right;
-        return Vector3.ClampMagnitude(input, 1f);
+        if (!inputDisabled)
+        {
+            var forward = cam.transform.forward;
+            var right = cam.transform.right;
+            forward.y = 0;
+            forward.Normalize();
+            forward *= joystick.Vertical;
+            right.y = 0;
+            right.Normalize();
+            right *= joystick.Horizontal;
+            var input = forward + right;
+            return Vector3.ClampMagnitude(input, 1f);
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
     public void Hit() {
         momentum += momentum.normalized * -hitSpeedChange;

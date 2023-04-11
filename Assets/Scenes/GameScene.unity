@@ -24555,7 +24555,7 @@ PrefabInstance:
       objectReference: {fileID: 1486599090}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: wallBounceDistance
-      value: 0.7
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8420504833638969471, guid: fe147432671cc5a4bb11a91ac2e27cd2, type: 3}
       propertyPath: wallBounceLayerMask.m_Bits

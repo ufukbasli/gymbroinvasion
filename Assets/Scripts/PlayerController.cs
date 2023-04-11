@@ -114,29 +114,31 @@ public class PlayerController : MonoBehaviour {
 
         Debug.DrawRay(rayStart, rayDirection * wallBounceDistance, Color.green);
 
-        if (hitCount > 0)
+        if (hitCount > 0 && momentum.magnitude>0.4f)
         {
             // Disable movement
             locked = true;
             inputDisabled = true;
+            var momentumLocal = momentum;
+
             momentum = Vector3.zero;
 
             // Wait for 0.2 seconds
-            StartCoroutine(BounceOffWallCoroutine(0.2f));
+            StartCoroutine(BounceOffWallCoroutine(0.2f,momentumLocal));
         }
     }
 
-    private IEnumerator BounceOffWallCoroutine(float delay)
+    private IEnumerator BounceOffWallCoroutine(float delay, Vector3 momentumLocal)
     {
-        yield return new WaitForSeconds(delay);
+        
 
         var hit = hits[0];
         var normal = hit.normal;
 
         // Bounce off the wall
-        var bounceDirection = Vector3.Reflect(momentum.normalized, normal);
-        Debug.Log(Vector3.Reflect(momentum.normalized, normal));
-        momentum = bounceDirection * momentum.magnitude;
+        var bounceDirection = Vector3.Reflect(momentumLocal.normalized, normal);
+        //Debug.Log(Vector3.Reflect(momentumLocal.normalized, normal));
+        momentum = bounceDirection * momentumLocal.magnitude*0.8f;
         
         // Rotate towards the new momentum direction
         transform.rotation = Quaternion.LookRotation(bounceDirection);
@@ -144,6 +146,8 @@ public class PlayerController : MonoBehaviour {
         // Enable movement after bouncing
         locked = false;
         inputDisabled = false;
+
+        yield return new WaitForSeconds(delay);
     }
 
 

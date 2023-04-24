@@ -85,14 +85,7 @@ public class PlayerController : MonoBehaviour {
             slideRatio = 1;
         }
 
-        if (momentum.magnitude >= 6)
-        {
-            CamChange(false, gameCam);
-        }
-        else 
-        {
-            CamChange(true, gameCam);
-        }
+        
         characterController.Move((momentum + Vector3.down) * Time.deltaTime * slideRatio);
 
         if (momentum.magnitude > minimumMomentum) transform.LookAt(transform.position + momentum.normalized);
@@ -177,8 +170,5 @@ public class PlayerController : MonoBehaviour {
         if (playerReference.playerController == this) playerReference.playerController = null;
     }
 
-    private void CamChange(bool result,GameObject cam)
-    {
-        cam.SetActive(result);
-    }
+    
 }
